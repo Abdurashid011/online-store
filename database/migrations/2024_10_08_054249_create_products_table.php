@@ -18,7 +18,6 @@ return new class extends Migration
             $table->integer('price');
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('comment_id')->nullable()->constrained('comments')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

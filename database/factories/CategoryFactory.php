@@ -15,13 +15,23 @@ class CategoryFactory extends Factory
      *
      * @return array<string, mixed>
      */
+//    public function definition(): array
+//    {
+//        return [
+//            'name' => $this->faker->name(),
+//            'description' => $this->faker->text(),
+//            'image' => $this->faker->imageUrl(),
+//            'parent_id' => Category::factory(),
+//        ];
+//    }
+
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
-            'description' => $this->faker->text(),
-            'image' => $this->faker->imageUrl(),
-            'parent_id' => Category::factory(),
+            'name' => $this->faker->word(),
+            'description' => $this->faker->sentence(),
+            'parent_id' => Category::query()->inRandomOrder()->first()?->id,
         ];
     }
+
 }

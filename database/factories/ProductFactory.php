@@ -23,9 +23,8 @@ class ProductFactory extends Factory
             'name' => $this->faker->name(),
             'description' => $this->faker->text(),
             'price' => $this->faker->numberBetween(1000, 10000),
-            'category_id' => Category::factory(),
-            'user_id' => User::factory(),
-            'comment_id' => Comment::factory(),
+            'category_id' => Category::query()->inRandomOrder()->first()?->id,
+            'user_id' => User::query()->inRandomOrder()->first()?->id,
         ];
     }
 }
