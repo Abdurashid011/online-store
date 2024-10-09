@@ -20,8 +20,8 @@ class CommentFactory extends Factory
     {
         return [
             'text' => $this->faker->realText(),
-            'user_id' => User::query()->inRandomOrder()->first()?->id,
-            'product_id' => null
+            'user_id' => User::inRandomOrder()->first()?->id,
+            'product_id' => Product::inRandomOrder()->first()?->id,
         ];
     }
 }
