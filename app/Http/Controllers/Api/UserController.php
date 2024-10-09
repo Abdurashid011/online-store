@@ -62,16 +62,35 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id): JsonResponse
     {
-        //
+        $user = User::query()->findOrFail($id);
+
+        $user->update([
+            'name' => $request->name,
+            'email'=> $request->email,
+            'password' => $request->password ? bcrypt($request->password) : $user->password
+        ]);
+
+        return response()->json([
+            'meessage' => 'User updated successfully',
+            'status'    => 'success',
+            'token'     => $user
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): JsonResponse
     {
-        //
+        $user = User::query()->findOrFail($id);
+
+        $user->delete();
+
+        return response()->json([
+            'message' => 'User deleted successfully',
+            'status'  => 'success',
+        ]);
     }
 }
