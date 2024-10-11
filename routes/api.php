@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\UserController;
@@ -12,4 +13,7 @@ Route::resource('/categories', CategoryController::class)
     ->middleware('auth:sanctum');
 
 Route::resource('/products', ProductController::class)
+    ->middleware('auth:sanctum');
+
+Route::resource('/carts', CartController::class)
     ->middleware('auth:sanctum');
